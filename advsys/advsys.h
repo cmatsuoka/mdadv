@@ -25,12 +25,7 @@ struct object_msg {
 
 struct them_table {
     int obj_num;
-    int them;
-};
-
-struct pronoun {
-    char *pronoun;
-    int x;
+    int pronoun;
 };
 
 struct room_map {

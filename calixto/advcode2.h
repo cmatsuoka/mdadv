@@ -75,3 +75,9 @@ void put04(void);
 void vdefl(void);
 void vinve(void);
 void vread(void);
+
+void movclk(void);
+void movlsr(void);
+void movlit(void);
+void movclo(void);
+void movsnk(void);

@@ -29,7 +29,7 @@ def parse_spcrtn(line):
     return False
 
 room_num = 0
-def parse_entr_exit_tb(line):
+def parse_room_action(line):
     global room_num
     m = re.match(".* DB\s+(\d+)\s*$", line)
     if m:
@@ -70,11 +70,10 @@ def parse_themtb(line):
 
 def parse_littab(line):
     if not line:
-        print("    { NULL, 0 }")
         return False
     m = re.match(".* DB\s+'([^']+)',\s*(\d+)", line)
     if m:
-        print('    {{ "{}", {} }},'.format(m.group(1), m.group(2)))
+        print('    "{}",'.format(m.group(1)))
         return True
     return False
 
@@ -86,6 +85,56 @@ def parse_rmtbdf(line):
         ))
         return True
     print("    { -1 }")
+    return False
+
+def parse_rmobdf(line):
+    m = re.match(".* (\d+)\s+DUP\s*\(0\)", line)
+    if m:
+        num = int(m.group(1))
+        print("    {},".format(", ".join([ "0" ] * num)))
+        return True
+    m = re.match(".* DB\s+(.*)", line)
+    if m:
+        olist = m.group(1).split(",")
+        if re.match("RMTBEND", line):
+            print("    {}".format(", ".join(olist)))
+            return False
+        else:
+            print("    {},".format(", ".join(olist)))
+            return True
+    return False
+
+def parse_pnttab(line):
+    if re.match(".* EQU\s+\$", line):
+        return True
+    if re.match(".* DB\s+0", line):
+        print("    { 0 }")
+        return False
+    m = re.match(".* DB\s+(\d+),\s*(\d+)", line)
+    if m:
+        print("    {{ {}, {} }},".format(m.group(1), m.group(2)))
+        return True
+    return False
+
+def parse_scrind(line):
+    if not line:
+        return False
+    m = re.match(".* DB\s+([\d,]+)", line)
+    if m:
+        olist = m.group(1).split(",")
+        print("    {},".format(", ".join(olist)))
+        return True
+    return False
+
+def parse_equtab(line):
+    if not line:
+        return False
+    m = re.match(".* DB\s+([\d,]+)\s(.*)", line)
+    if m:
+        olist = m.group(1).split(",")
+        cmt = m.group(2).replace(";", "// ")
+        print("    {}, {}".format(", ".join(olist), cmt))
+        return True
     return False
 
 def parse_all(fin):
@@ -107,13 +156,13 @@ def parse_all(fin):
             print("\nstruct special_action spcrtn[] = {")
             mode = "spcrtn"
         elif re.match("ENTRTB", line):
-            print("\nstruct entr_exit entrtb[] = {")
+            print("\nstruct room_action entrtb[] = {")
             mode = "entrtb"
         elif re.match("EXITTB", line):
-            print("\nstruct entr_exit exittb[] = {")
+            print("\nstruct room_action exittb[] = {")
             mode = "exittb"
         elif re.match("INRMTB", line):
-            print("\nstruct entr_exit inrmtb[] = {")
+            print("\nstruct room_action inrmtb[] = {")
             mode = "inrmtb"
         elif re.match("OBJMSG", line):
             print("\nstruct object_msg objmsg[] = {")
@@ -122,11 +171,34 @@ def parse_all(fin):
             print("\nstruct them_table themtb[] = {")
             mode = "themtb"
         elif re.match("LITTAB", line):
-            print("\nstruct pronoun littab[] = {")
+            print("\nchar *pronoun[] = {")
             mode = "littab"
         elif re.match("RMTBDF", line):
             print("\nstruct room_map rmtbdf[] = {")
             mode = "rmtbdf"
+        elif re.match("RMOBDF", line):
+            print("\nint rmobdf[] = {")
+            mode = "rmobdf"
+        elif re.match("ROOMTB", line):
+            print("\nstruct room_map *roomtb;\n")
+        elif re.match("RMOBTB1", line):
+            print("\nint *rmobtb1;\n")
+        elif re.match("RMOBTB2", line):
+            pass
+        elif re.match("RMTB_LEN", line):
+            print("\nint rmtb_len = sizeof(rmtbdf);\n")
+        elif re.match("PNTTAB", line):
+            print("\nstruct point_table pnttab[] = {")
+            mode = "pnttab"
+        elif re.match("SCRIND", line):
+            print("\nint scrind[] = {")
+            mode = "scrind"
+        elif re.match("EQUTAB", line):
+            print("\nint equtab[] = {")
+            mode = "equtab"
+        elif re.match("ANTTAB", line):
+            print("\nstruct room_action anttab[] = {")
+            mode = "anttab"
 
         # Process current data structure
         if mode == "verbtb" or mode == "nountb":
@@ -140,7 +212,7 @@ def parse_all(fin):
             print("};\n")
             mode = "None"
         elif mode == "entrtb" or mode == "exittb" or mode == "inrmtb":
-            if parse_entr_exit_tb(line):
+            if parse_room_action(line):
                 continue
             print("};\n")
             mode = "None"
@@ -164,9 +236,34 @@ def parse_all(fin):
                 continue
             print("};\n")
             mode = "None"
+        elif mode == "rmobdf":
+            if parse_rmobdf(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "pnttab":
+            if parse_pnttab(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "scrind":
+            if parse_scrind(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "equtab":
+            if parse_equtab(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "anttab":
+            if parse_room_action(line):
+                continue
+            print("};\n")
+            mode = "None"
 
 def main():
-    print('#include <stdlib.h>"')
+    print('#include <stdlib.h>')
     print('#include "advsys.h"')
     print('#include "advcode1.h"')
     print('#include "advcode2.h"')

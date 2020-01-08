@@ -1,5 +1,7 @@
 #pragma once
 
+#include "advsys.h"
+
 void dmsg012(void);
 void dmsg026(void);
 
@@ -46,25 +48,25 @@ void go14(void);
 void go15(void);
 void go16(void);
 
-void look01(void);
-void look02(void);
-void look03(void);
-void look04(void);
-void look05(void);
-void look06(void);
-void look07(void);
-void look08(void);
-void look09(void);
-void look10(void);
-void look11(void);
-void look14(void);
-void look15(void);
-void look16(void);
-void look17(void);
-void look18(void);
-void look19(void);
-void look20(void);
-void look21(void);
+void look01(struct advdata *);
+void look02(struct advdata *);
+void look03(struct advdata *);
+void look04(struct advdata *);
+void look05(struct advdata *);
+void look06(struct advdata *);
+void look07(struct advdata *);
+void look08(struct advdata *);
+void look09(struct advdata *);
+void look10(struct advdata *);
+void look11(struct advdata *);
+void look14(struct advdata *);
+void look15(struct advdata *);
+void look16(struct advdata *);
+void look17(struct advdata *);
+void look18(struct advdata *);
+void look19(struct advdata *);
+void look20(struct advdata *);
+void look21(struct advdata *);
 
 void open01(void);
 void open02(void);

@@ -10,6 +10,8 @@
 //		  TO ROOM.
 
 
+#include "advutil.h"
+
 
 //********************************************************************
 //
@@ -132,6 +134,16 @@
 //
 //********************************************************************
 
+int havobj(struct advdata *d, int obj_num)
+{
+    for (int i = 0; i < d->maxobj1; i++) {
+        if (obj_num == d->object[i]) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 
 //********************************************************************
 //
@@ -188,7 +200,8 @@
 //
 //********************************************************************
 
-int ckobj(struct advdata *d, int obj_num) {
+int ckobj(struct advdata *d, int obj_num)
+{
     int *p = pntrm1(d, obj_num);
     for (; *p; p++) {
         if (obj_num == *p) {
@@ -218,6 +231,15 @@ int ckobj(struct advdata *d, int obj_num) {
 //
 //********************************************************************
 
+void makvis(struct advdata *d, int obj_num)
+{
+    for (int *o = pntrm1; *o != 0xff; o++) {
+        if (*o == obj_num) {
+            *o &h 0x7f;
+            return;
+        }
+    }
+}
 
 //********************************************************************
 //
@@ -232,7 +254,7 @@ int ckobj(struct advdata *d, int obj_num) {
 //
 //********************************************************************
 
-static int *pntrm(advdata *d, int *table)
+static int *pntrm(struct advdata *d, int *table)
 {
     for (int i = 1; i < d->room; i++) {
         for (table++; table[-1] != 0; table++);
@@ -305,6 +327,11 @@ int *pntrm2(advdata *d)
 //		    IF ZF SET THEN OBJECT NOT FOUND
 //
 //********************************************************************
+
+int locobj(struct advdata *d, int obj_num)
+{
+    return havobj(d, obj_num) || ckobj(d, obj_num);
+}
 
 
 //********************************************************************

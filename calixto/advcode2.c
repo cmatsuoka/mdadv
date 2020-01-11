@@ -3,7 +3,11 @@
 //
 
 #include "advdata1.h"
+#include "advdata2.h"
+#include "advcode1.h"
 #include "advcode2.h"
+#include "advutil.h"
+
 
 //        ADVENTURE UNIQUE VARIABLES
 static int bailsw;
@@ -21,11 +25,11 @@ static int clrsw;
 void look01(struct advdata *d)
 {
     if (!ckobj(d, d->nounno)) {
-        if (!ckobj(94)) {        // OPEN DESK
+        if (!ckobj(d, 94)) {      // OPEN DESK
             nosee(d);
             return;
         }
-        if (!makvis(27+INV)) {   // MICROFILM
+        if (!makvis(d, 27+INV)) {  // MICROFILM
             dmsg012();
             return;
         }
@@ -46,11 +50,11 @@ void look01(struct advdata *d)
 
 void look02(struct advdata *d)
 {
-    if (!ckobj(121)) {            // TABLE
+    if (!ckobj(d, 121)) {         // TABLE
         nosee(d);
         return;
     }
-    if (!makvis(18+INV)) {        // MESSAGE
+    if (!makvis(d, 18+INV)) {     // MESSAGE
         dmsg012();
         return;
     }
@@ -62,11 +66,11 @@ void look02(struct advdata *d)
 
 void look03(struct advdata *d)
 {
-    if (locobj(10)) {             // RUG
+    if (locobj(d, 10)) {          // RUG
         dmsg012();
         return;
     }
-    if (ckobj(119)) {             // LADDER TO CELLAR
+    if (ckobj(d, 119)) {          // LADDER TO CELLAR
         dmsg012();
         return;
     }
@@ -79,19 +83,19 @@ void look04(struct advdata *d)
 {
     if (d->room >= 5 && d->room <= 8) {
         if (d->room == 8) {
-            if (!ckobj(122)) {    // DEVICE
-                nosee();
+            if (!ckobj(d, 122)) {  // DEVICE
+                nosee(d);
                 return;
             }
         }
         dmsg012();
         return;
     }
-    if (!ckobj(d->nounno)) {
-        nosee();
+    if (!ckobj(d, d->nounno)) {
+        nosee(d);
         return;
     }
-    if (ckobj(119)) {             // LADDER
+    if (ckobj(d, 119)) {          // LADDER
         dmsg012();
         return;
     }
@@ -104,8 +108,8 @@ void look04(struct advdata *d)
 void look05(struct advdata *d)
 {
     equobj(d);
-    if (!locobj(d->nounno)) {
-        nosee();
+    if (!locobj(d, d->nounno)) {
+        nosee(d);
         return;
     }
     switch (chstsw) {
@@ -127,13 +131,13 @@ void look05(struct advdata *d)
 void look06(struct advdata *d)
 {
     if (d->room != 3) {
-        nosee();
+        nosee(d);
         return;
     }
-    if (mkvis(16+INV)) {          // MOUSETRAP
+    if (makvis(d, 16+INV)) {      // MOUSETRAP
         ckdraw();
         dmsg037();
-        returnl
+        return;
     }
     disply(11);
     dmsg038();
@@ -154,8 +158,8 @@ void look07(struct advdata *d)
 
 void look08(struct advdata *d)
 {
-    if (!havobj(d->nounno)) {
-        nohave();
+    if (!havobj(d, d->nounno)) {
+        nohave(d);
         return;
     }
     disply(31);
@@ -177,34 +181,123 @@ void look09(struct advdata *d)
 
 void look10(struct advdata *d)
 {
-    if (ckobj(117)) {             // SPEAKER
+    if (ckobj(d, 117)) {          // SPEAKER
         dmsg014();
         return;
     }
-    if (ckobj(122)) {             // DEVICE
+    if (ckobj(d, 122)) {          // DEVICE
         dmsg044();
         return;
     }
-    nosee();
+    nosee(d);
 }
 
 //        LOOK PASSAGE
 
+void look11(struct advdata *d)
+{
+    if (d->room == 4) {
+        dmsg012();
+        return;
+    }
+    if (ckobj(d, 123)) {          // STORAGE CABINET W/PASSAGE
+        dmsg012();
+        return;
+    }
+    lookob(d);
+}
+
 //        LOOK PATH
+
+void look14(struct advdata *d)
+{
+    if (d->room == 16 || d->room == 9) {
+        dmsg012();
+        return;
+    }
+    nosee(d);
+}
 
 //        LOOK MICROFILM
 
+void look15(struct advdata *d)
+{
+    if (!havobj(d, d->nounno)) {
+        nohave(d);
+        return;
+    }
+    if (!havobj(d, 11)) {         // SPECS
+        dmsg068();
+        return;
+    }
+    dmsg069();
+}
+
 //        LOOK ENERGIZER
+
+void look16(struct advdata *d)
+{
+    if (d->room == 6 || d->room == 7) {
+        dmsg012();
+        return;
+    }
+    nosee(d);
+}
 
 //        LOOK HILL
 
+void look17(struct advdata *d)
+{
+    if (d->room == 8 || d->room == 15 || d->room == 16) {
+        dmsg012();
+        return;
+    }
+    nosee(d);
+}
+
 //        LOOK FIELD
+
+void look18(struct advdata *d)
+{
+    if (d->room == 8) {
+        dmsg012();
+        return;
+    }
+    lookob(d);
+}
 
 //        LOOK LAB
 
+void look19(struct advdata *d)
+{
+    if (d->room == 5) {
+        dmsg012();
+        return;
+    }
+    lookob(d);
+}
+
 //        LOOK SHACK
 
+void look20(struct advdata *d)
+{
+    if (d->room == 19) {
+        dmsg012();
+        return;
+    }
+    lookob(d);
+}
+
 //        LOOK SHED
+
+void look21(struct advdata *d)
+{
+    if (d->room == 17) {
+        dmsg012();
+        return;
+    }
+    lookob(d);
+}
 
 //        GET RUG
 

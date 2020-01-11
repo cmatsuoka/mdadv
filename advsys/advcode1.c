@@ -15,6 +15,9 @@
 //
 //********************************************************************
 
+void lookob(struct advdata *d)
+{
+}
 
 //********************************************************************
 //
@@ -49,7 +52,7 @@ void nosee(struct advdata *d)
 
 void nohave(struct advdata *d)
 {
-    nosee(d, 10);
+    nosee1(d, 10);
 }
 
 //********************************************************************
@@ -145,3 +148,84 @@ void alrhav(struct advdata *d)
 //  DSPMSG - DISPLAY MESSAGE ROUTINES
 //
 //********************************************************************
+
+#define DMSG(x) void dmsg##x { disply(x); reply(); }
+
+DMSG(007)
+DMSG(008)
+DMSG(009)
+DMSG(010)
+DMSG(011)
+DMSG(012)
+DMSG(013)
+DMSG(014)
+DMSG(015)
+DMSG(016)
+DMSG(017)
+DMSG(018)
+DMSG(019)
+DMSG(021)
+DMSG(022)
+DMSG(023)
+DMSG(024)
+DMSG(026)
+DMSG(027)
+DMSG(028)
+DMSG(029)
+DMSG(030)
+DMSG(031)
+DMSG(032)
+DMSG(034)
+DMSG(035)
+DMSG(036)
+DMSG(037)
+DMSG(038)
+DMSG(039)
+DMSG(040)
+DMSG(041)
+DMSG(042)
+DMSG(043)
+DMSG(044)
+DMSG(045)
+DMSG(046)
+DMSG(047)
+DMSG(048)
+DMSG(049)
+DMSG(050)
+DMSG(051)
+DMSG(052)
+DMSG(053)
+DMSG(054)
+DMSG(055)
+DMSG(059)
+DMSG(060)
+DMSG(062)
+DMSG(063)
+DMSG(065)
+DMSG(066)
+DMSG(067)
+DMSG(068)
+DMSG(069)
+DMSG(070)
+DMSG(071)
+DMSG(072)
+DMSG(073)
+DMSG(074)
+DMSG(075)
+DMSG(076)
+DMSG(077)
+DMSG(078)
+DMSG(079)
+DMSG(080)
+DMSG(081)
+DMSG(085)
+DMSG(086)
+DMSG(088)
+DMSG(089)
+DMSG(090)
+DMSG(096)
+DMSG(097)
+DMSG(098)
+DMSG(099)
+DMSG(101)
+DMSG(104)

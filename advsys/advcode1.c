@@ -80,6 +80,10 @@ void alrhav(struct advdata *d)
 //
 //********************************************************************
 
+void vinve(struct advdata *d)
+{
+    STUB();
+}
 
 //********************************************************************
 //
@@ -108,6 +112,14 @@ void alrhav(struct advdata *d)
 //
 //********************************************************************
 
+void badinp(struct advdata *d)
+{
+    d->score--;
+    disply(message[4]);
+    disply(d->keybuf);
+    chrout('"');
+    reply1();
+}
 
 //********************************************************************
 //
@@ -116,6 +128,11 @@ void alrhav(struct advdata *d)
 //********************************************************************
 
 void reply()
+{
+    STUB();
+}
+
+void reply1()
 {
     STUB();
 }
@@ -164,12 +181,12 @@ void dspmsg(int num)
     reply();
 }
 
-void dmsg012()
+void dmsg012(struct advdata *d)
 {
     dspmsg(12);
 }
 
-void dmsg026()
+void dmsg026(struct advdata *d)
 {
     dspmsg(26);
 }

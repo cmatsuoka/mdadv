@@ -9,7 +9,7 @@
 //		  FROM ONE ROOM TO ANOTHER WITHOUT CLEARING THE
 //		  TO ROOM.
 
-
+#include <string.h>
 #include "advutil.h"
 
 
@@ -122,6 +122,16 @@
 //
 //********************************************************************
 
+int getobj(struct advdata *d, int obj_num)
+{
+    for (int *o = pntrm1(d); *o != 0xff; o++) {
+        if (*o == obj_num) {
+            memmove(o, o+1, o-rmobt1);
+            return 1;
+        }
+    }
+    return 0;
+}
 
 //********************************************************************
 //
@@ -155,6 +165,10 @@ int havobj(struct advdata *d, int obj_num)
 //
 //********************************************************************
 
+void repobj(struct advdata *d, int obj_num, int replace)
+{
+    STUB();
+}
 
 //********************************************************************
 //
@@ -165,6 +179,10 @@ int havobj(struct advdata *d, int obj_num)
 //
 //********************************************************************
 
+void equobj(struct advdata *d)
+{
+    STUB();
+}
 
 //********************************************************************
 //
@@ -221,6 +239,19 @@ int ckobj(struct advdata *d, int obj_num)
 //
 //********************************************************************
 
+void chgobj(struct advdata *d, int obj_num, int replace)
+{
+    if (replace == 0) {
+        getobj(d, obj_num);
+        return;
+    }
+    for (int *o = pntrm1(d); *o != 0xff; o++) {
+        if (*o == obj_num) {
+            *o = replace;
+            return;
+        }
+    }
+}
 
 //********************************************************************
 //

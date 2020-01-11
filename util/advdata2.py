@@ -278,9 +278,9 @@ def parse_all(fin):
             mode = "rmobdf"
         elif re.match("ROOMTB", line):
             print("\nstruct room_map *roomtb;\n")
-        elif re.match("RMOBTB1", line):
-            print("\nint *rmobtb1;\n")
-        elif re.match("RMOBTB2", line):
+        elif re.match("RMOBT1", line):
+            print("\nint *rmobt1;\n")
+        elif re.match("RMOBT2", line):
             pass
         elif re.match("RMTB_LEN", line):
             print("\nint rmtb_len = sizeof(rmtbdf);\n")

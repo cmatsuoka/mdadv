@@ -56,4 +56,4 @@ struct point_table {
 
 
 void disply(char *msg);
-
+void chrout(int ch);

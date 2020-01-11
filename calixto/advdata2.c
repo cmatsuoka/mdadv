@@ -475,6 +475,9 @@ struct room_map *roomtb;
 // ROOM OBJECT TABLE USED DURING GAME PLAY
 // SOURCE IS RMOBDF
 
+int *rmobt1;
+
+
 int rmtb_len = sizeof(rmtbdf);
 
 // TREASURE POINT TABLE

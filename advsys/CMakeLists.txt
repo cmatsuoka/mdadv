@@ -10,5 +10,6 @@ add_library(${PROJECT_NAME}
 	advsys11.c
 	advutil.c
 	advcode1.c
+        protect.c
 )
 

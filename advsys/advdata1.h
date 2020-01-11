@@ -20,4 +20,6 @@ struct advdata {
     int tresrm1;
     int maxpnt1;
     int deadrm1;
+
+    char keybuf[MAXLINE+1];
 };

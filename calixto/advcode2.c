@@ -2,11 +2,13 @@
 //        FILE: ADVCODE2.ASM   --   CALIXTO ISLAND
 //
 
+#include <stdlib.h>
 #include "advdata1.h"
 #include "advdata2.h"
 #include "advcode1.h"
 #include "advcode2.h"
 #include "advutil.h"
+#include "protect.h"
 
 
 //        ADVENTURE UNIQUE VARIABLES
@@ -301,107 +303,406 @@ void look21(struct advdata *d)
 
 //        GET RUG
 
+void get01(struct advdata *d)
+{
+    STUB();
+}
+
 //        GET DESK OR TABLE
+
+void get02(struct advdata *d)
+{
+    STUB();
+}
 
 //        GET MANUAL/SPECS
 
+void get03(struct advdata *d)
+{
+    STUB();
+}
+
 //        GET MICE
+
+void get04(struct advdata *d)
+{
+    STUB();
+}
 
 //        GET BOAT
 
+void get05(struct advdata *d)
+{
+    STUB();
+}
+
 //        GET PADDLES
+
+void get06(struct advdata *d)
+{
+    STUB();
+}
 
 //        PUT MICE
 
+void put01(struct advdata *d)
+{
+    STUB();
+}
+
 //        PUT JEWELS
+
+void put04(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO STAIRS
 
+void go01(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO LADDER/DOOR/CELLAR
+
+void go02(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO PASSAGE
 
+void go03(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO DEVICE
+
+void go04(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO FIELD
 
+void go05(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO PATH
+
+void go06(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO LAB
 
+void go07(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO SHED
+
+void go08(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO SHACK
 
+void go09(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO HILL
+
+void go10(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO JUNGLE
 
+void go11(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO CREVICE
+
+void go12(struct advdata *d)
+{
 
 //
 //        PROTECTION BELOW
 //
-
+    if (validsw != protsw) {      // CHECK FOR LEGAL COPY OF GAME
+        dmsg(23);                 //   AND DISALLOW ENTRY TO
+        return;                   //   PASSAGE IF NOT VALID
+    }
 //
 //        PROTECTION ABOVE
 //
+    STUB();
+}
 
 //        GO SHORE/BEACH
 
+void go13(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO BOAT
+
+void go14(struct advdata *d)
+{
+    STUB();
+}
 
 //        GO CLEARING
 
+void go15(struct advdata *d)
+{
+    STUB();
+}
+
 //        GO DOOR
+
+void go16(struct advdata *d)
+{
+    STUB();
+}
 
 //        FEED VERB PROCESSOR
 
+void vfeed(struct advdata *d)
+{
+    STUB();
+}
+
 //        CUT VERB PROCESSOR
+
+void vcut(struct advdata *d)
+{
+    STUB();
+}
 
 //        KILL VERB PROCESSOR
 
+void vkill(struct advdata *d)
+{
+    STUB();
+}
+
 //        INFLATE VERB PROCESSOR
+
+void vinfl(struct advdata *d)
+{
+    STUB();
+}
 
 //        DEFLATE VERB PROCESSOR
 
+void vdefl(struct advdata *d)
+{
+    STUB();
+}
+
 //        ACTIVATE VERB PROCESSOR
+
+void vactiv(struct advdata *d)
+{
+    STUB();
+}
 
 //        PRESS VERB PROCESSOR
 
+void vpress(struct advdata *d)
+{
 //
 //        PROTECTION BELOW
 //
+    if (validsw != protsw) {      // CHECK FOR LEGAL COPY OF GAME
+        dmsg(55);                 //   AND DISALLOW ENTRY TO
+        return;                   //   PASSAGE IF NOT VALID
+    }
 
 //
 //        PROTECTION ABOVE
 //
+    STUB();
+}
 
 //        UNLIGHT VERB PROCESSOR
 
+void vunlit(struct advdata *d)
+{
+    STUB();
+}
+
 //        LIGHT VERB PROCESSOR
+
+void vlight(struct advdata *d)
+{
+    STUB();
+}
 
 //        READ VERB PROCESSOR
 
+void vread(struct advdata *d)
+{
+    if (d->nounno == 125) {       // SIGN
+        if (d->room == 4) {
+            dmsg(47);
+            return;
+        }
+        if (d->room == 19) {      // IN SHACK
+            if (ckobj(d, 125)) {  // SIGN
+                dmsg(101);
+                return;
+            }
+        }
+        nosee(d);
+        return;
+    }
+    if (d->nounno == 12) {        // MANUAL
+        if (!havobj(d, 12)) {
+            nohave(d);
+            return;
+        }
+        if (ckobj(d, 117)) {      // SPEAKER
+            dmsg(53);
+        } else {
+            dmsg(48);
+        }
+        return;
+    }
+    badinp(d);
+}
+
 //        UNLOCK VERB PROCESSOR
+
+void vunlok(struct advdata *d)
+{
+    STUB();
+}
 
 //        TRADE VERB PROCESSOR
 
+void vtrade(struct advdata *d)
+{
+    STUB();
+}
+
 //        BAIL VERB PROCESSOR
+
+void vbail(struct advdata *d)
+{
+    STUB();
+}
 
 //        ROW VERB PROCESSOR
 
+void vrow(struct advdata *d)
+{
+    STUB();
+}
+
 //        DIG VERB PROCESSOR
+
+void vdig(struct advdata *d)
+{
+    STUB();
+}
 
 //        GIVE VERB PROCESSOR
 
+void vgive(struct advdata *d)
+{
+    STUB();
+}
+
 //        OPEN VERB PROCESSOR
+
+void vopen(struct advdata *d)
+{
+    if (d->nounno != 120) {       // TRAP DOOR
+        badinp(d);
+        return;
+    }
+    if (!ckobj(d, 120)) {
+        nosee(d);
+        return;
+    }
+    if (ckobj(d, 119)) {          // LADDER
+        disply(message[28]);
+        dmsg(18);
+        return;
+    }
+    makvis(d, 119+INV);           // LADDER
+    ckdraw(d);
+    dmsg(11);
+}
 
 //        OPEN CHEST
 
+void open01(struct advdata *d)
+{
+    if (locobj(d, 31)) {          // OPEN CHEST
+        disply(message[28]);
+        dmsg(18);
+        return;
+    }
+    if (havobj(d, 30)) {          // CLOSED CHEST
+        repobj(d, 30, 31);        // OPEN CHEST
+        chstsw++;
+        dmsg(18);
+        return;
+    }
+    if (ckobj(d, 30)) {
+        chgobj(d, 30, 31);
+        ckdraw(d);
+        chstsw++;
+        dmsg(18);
+        return;
+    }
+    nosee(d);
+}
+
 //        OPEN DESK
 
+void open02(struct advdata *d)
+{
+    if (ckobj(d, 94)) {           // OPEN DESK
+        dmsg(18);
+        return;
+    }
+    if (ckobj(d, 126)) {          // CLOSED DESK
+        if (desksw) {
+           dmsg(17);
+           return;
+        }
+        chgobj(d, 126, 94);
+        ckdraw(d);
+        dmsg(18);
+        return;
+    }
+    nosee(d);
+}
+
 //        SPECIAL GET ROUTINE FOR IN SHACK
+
+void getsha(struct advdata *d)
+{
+    STUB();
+}
 
 //        CHECK FOR IN DARK AREA
 
@@ -413,9 +714,24 @@ void look21(struct advdata *d)
 
 //        IN ROOM ROUTINES
 
+void inrm01(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 06
 
+void inrm06(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 24
+
+void inrm24(struct advdata *d)
+{
+    STUB();
+}
 
 //        ENTER ROOM ROUTINES
 
@@ -432,13 +748,38 @@ void entr03(struct advdata *d)
 
 //        ROOM 06
 
+void entr06(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 15
+
+void entr15(struct advdata *d)
+{
+    STUB();
+}
 
 //        ROOM 19
 
+void entr19(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 23
 
+void entr23(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 24
+
+void entr24(struct advdata *d)
+{
+    STUB();
+}
 
 //        EXIT ROOM ROUTINES
 
@@ -456,13 +797,38 @@ void exit03(struct advdata *d)
 
 //        ROOM 06
 
+void exit06(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 19
+
+void exit19(struct advdata *d)
+{
+    STUB();
+}
 
 //        ROOM 22
 
+void exit22(struct advdata *d)
+{
+    STUB();
+}
+
 //        ROOM 24
 
+void exit24(struct advdata *d)
+{
+    STUB();
+}
+
 //        EXIT FROM BOAT
+
+void exboat(struct advdata *d)
+{
+    STUB();
+}
 
 //        ANIMATION ROUTINES
 

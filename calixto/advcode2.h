@@ -1,6 +1,6 @@
 #pragma once
 
-#include "advsys.h"
+#include "advdata1.h"
 
 void dmsg012(void);
 void dmsg026(void);

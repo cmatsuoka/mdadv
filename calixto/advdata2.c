@@ -552,7 +552,6 @@ int equtab[] = {
     126, 94, 0,           // ROLLTOP DESK
     124, 123, 0,          // STORAGE CABINET
     115, 107, 0,          // PATH IN JUNGLE
-    0, 
 };
 
 // ANTIMATION ROUTINES BY ROOM
@@ -583,6 +582,84 @@ struct room_action anttab[] = {
 // PUT IT IN ANOTHER ROOM TABLE
 // FORMAT: CURR ROOM,NEW ROOM
 // MOVABLE OBJ TABLE
+
+int movobj[] = {
+    28, 105, 0,           // JEWELLED CROWN
+    23, 0,
+    29, 106, 0,           // MAYAN POTTERY
+    23, 0,
+    110, 90, 0,           // TRADER JACK
+    19, 0,
+    125, 92, 0,           // SIGN
+    19, 0,
+    112, 94, 0,           // SNAKE
+    14, 0,
+    10, 118, 0,           // ROLLED UP RUG
+    1, 5, 8, 9, 16, 17, 18,
+    19, 0,
+    16, 119, 0,           // MOUSETRAP
+    3, 0,
+    17, 95, 0,            // BOOTS
+    5, 8, 16, 17, 18, 0,
+    26, 100, 0,           // MICE
+    17, 0,
+    102, 101, 0,          // NATIVES
+    22, 0,
+    93, 102, 0,           // INFLATED BOAT
+    18, 22, 0,
+    19, 103, 0,           // PADDLES
+    14, 0,
+    20, 88, 0,            // SHOVEL
+    17, 0,
+    21, 89, 0,            // DEFLATED BOAT
+    16, 17, 18, 22, 0,
+    23, 97, 0,            // KEYS
+    19, 0,
+    24, 98, 0,            // MACHETE
+    19, 0,
+    107, 76, 0,           // CUT PATH IN JUNGLE
+    9, 0,
+    101, 37, 0,           // OCEAN
+    24, 25, 0,
+    122, 32, 0,           // DEVICE
+    8, 0,
+    32, 7, 0,             // RUG OVER TRAP DOOR
+    1, 0,
+    18, 10, 0,            // MESSAGE
+    1, 0,
+    120, 3, 0,            // TRAP DOOR
+    1, 0,
+    119, 8, 0,            // LADDER
+    1, 0,
+    8, 17, 0,             // UNLIT FLASHLIGHT
+    2, 8, 16, 18, 0,
+    9, 17, 0,             // LIT FLASHLIGHT
+    2, 8, 16, 18, 0,
+    30, 15, 0,            // CLOSED CHEST
+    2, 0,
+    31, 18, 0,            // OPEN CHEST
+    2, 8, 18, 19, 0,
+    13, 16, 0,            // JEWELRY
+    2, 0,
+    11, 19, 0,            // SPECS
+    2, 3, 5, 8, 16, 17, 18,
+    22, 0,
+    12, 20, 0,            // MANUAL
+    2, 3, 5, 8, 16, 17, 18,
+    22, 0,
+    14, 21, 0,            // TIRE PUMP
+    3, 16, 18, 0,
+    15, 22, 0,            // BUCKET
+    3, 8, 16, 17, 18, 22, 0,
+    123, 26, 0,           // CABINET
+    3, 0,
+    124, 29, 0,           // CABINET
+    3, 0,
+    94, 9, 0,            // DESK
+    1, 0,
+    0
+};
+
 // GRAPHIC SCREEN PNTR TABLE
 // GRAPHIC OBJECT PNTR TABLE
 // DIRECTION DESCRIPTIONS TABLE
@@ -616,6 +693,115 @@ struct room_action anttab[] = {
 // COMPRESSED PHRASE TABLE
 // VERB ROUTINE JUMP VECTORS
 // ASSORTED TEXT MESSAGES
+
+char *message[] = {
+    [0] = "\n\nOK, ",
+    [1] = "\n\nObvious directions: ",
+    [2] = "\n\nI see \r: ",
+    [3] = "\nI see no way to go in that direction.",
+    [4] = "\nI don't understand \"",
+    [5] = "\nI'm carrying the following:\n",
+    [6] = "\nnothing.",
+    [7] = "\nI don't see ",
+    [8] = "\nI'm carrying ",
+    [9] = "\nI can't carry anymore.",
+    [10] = "\nI don't have ",
+    [11] = "\nHey, I found something!",
+    [12] = "\nI see nothing special.",
+    [13] = "\nI'm on it!",
+    [14] = "\nI'm in it!",
+    [15] = "\nIt's beyond my power to do that.",
+    [16] = "\nIt's closed.",
+    [17] = "\nIt's locked.",
+    [18] = "\nIt's open.",
+    [19] = "\nIt's unlocked.",
+    [20] = "\nWon't budge.",
+    [21] = "\nDoesn't work.",
+    [22] = "\nIt's empty.",
+    [23] = "\nI can't do that ... yet!",
+    [24] = "\n00000 of 1 treasure scored\n00000 moves used.",
+    [25] = "\n\nThis Adventure is over.\n00000 of 1 treasure scored\n00000 moves were used.\n\nPlay again (Y/N)? ",
+    [26] = "\nDon't be ridiculous.",
+    [27] = "\nCongratulations, you did it.\n",
+    [28] = "\nSorry, I can't do that - ",
+    [29] = "\nMaybe I should open it.",
+    [30] = "\nHey, there's a message here!",
+    [31] = "\nIt looks interesting alright!",
+    [32] = "\nI have no way to do that.",
+    [33] = "\nThere's a trap door under it!",
+    [34] = "\nIt's too big and heavy.",
+    [35] = "\nI found a pair of spectacles.",
+    [36] = "\nThere's an instruction manual in here.",
+    [37] = "\nThere's a mouse trap in it.",
+    [38] = "\nIt's a concealed switch.",
+    [39] = "\nI heard a strange sound.",
+    [40] = "\nThey're wire framed reading glasses.",
+    [41] = "\nThe message reads...\n- The Professor's notes should give some clues -",
+    [42] = "\nMaybe I should read it!",
+    [43] = "\nIt's just a regular mousetrap.",
+    [44] = "\nIt's quite large. I see an instrument panel and a reclining seat.",
+    [45] = "\nI don't see them here.",
+    [46] = "\nThey're made of heavy leather with rubber cleats.",
+    [47] = "\nIt says...\n-To light is good\n-To unlight is wise",
+    [48] = "\nThe title is :\n- Teleporter Operating Manual\nThe introduction says :\n- To be used if problems arise",
+    [49] = "\nI'm not sure I understand these complex things.",
+    [50] = "\nThe jungle growth is very dense.",
+    [51] = "\nThe flashlight is lit.",
+    [52] = "\nIt's off!",
+    [53] = "\nThe manual says...\n1. Activate the energizer\n2. Press the teleport button",
+    [54] = "\nThe teleporter vibrates slightly and emits a low hum.",
+    [55] = "\nNothing happens!",
+    [56] = "\n\nA mechanical sounding voice from the speaker says...\n-Please read your manual before operating the teleporter-",
+    [57] = "\n\nWelcome to the Calixto Island Adventure.",
+    [58] = "\n\nTrader Jack says - Hi Bub! Got somethinQUOTE+80Hto trade?",
+    [59] = "\nJack won't let me. He says:\n- That's stealinQUOTE+80Hnot tradinQUOTE+80H-",
+    [60] = "\nJack says:\n- That's cheatinQUOTE+80HBub -",
+    [61] = "\nJack says:\n- No deal Bub! -",
+    [62] = "\nI'm needinQUOTE+80HsomethinQUOTE+80Hto cover my dirt floor.",
+    [63] = "\nI'm needinQUOTE+80HsomethinQUOTE+80Hto store my junk in.",
+    [64] = "\nJack says - It's a deal Bub! - Take what yer needinQUOTE+80H-",
+    [65] = "\nBoy, that was hard work.",
+    [66] = "\nI have no trap.",
+    [67] = "\nI have no key.",
+    [68] = "\nThe print is too small.",
+    [69] = "\nit's a It must be buried at the pagan idol on Calixto Island. If you find it, put it in my study.",
+    [70] = "\nI don't hear anything now.",
+    [71] = "\nI don't have them.",
+    [72] = "\nI'm carrying them!",
+    [73] = "\nNot while I'm carrying it.",
+    [74] = "\nI have no pump.",
+    [75] = "\nIt's full of air.",
+    [76] = "\nIt's too big and bulky.",
+    [77] = "\nIt needs air.",
+    [78] = "\nIt's already deflated.",
+    [79] = "\nThat's not very nice.",
+    [80] = "\nNo way, I won't go near it!",
+    [81] = "\nNot with that snake there!",
+    [82] = "\nThe snake grabs a mouse and slithers away.",
+    [83] = "\nI lost my footing and fell on the rocks below. I'm dead!",
+    [84] = "\nIt's pitch black. I can't see anything!\n",
+    [85] = "\nIt's lit.",
+    [86] = "\nIt's off.",
+    [87] = "\n\nLight runs out in 00 move(s).",
+    [88] = "\nI think we need some water!",
+    [89] = "\nPerhaps I should sit in the boat.",
+    [90] = "\nI have no paddles.",
+    [91] = "\n\nThe boat is leaking, maybe I should \"BAIL WATER\".",
+    [92] = "\n\nThe boat sank and I have drown.",
+    [93] = "\nThe epitaph says...\nProfessor Lagarto didn't make it.",
+    [94] = "\nIt's just a common pagan idol.",
+    [95] = "\nIt's brightly decorated.",
+    [96] = "\nI have no shovel.",
+    [97] = "\nThe natives grab the jewelry and wander happily away.",
+    [98] = "\n\nThe natives won't let me.",
+    [99] = "\nI see no one to give them to.",
+    [100] = "\nIt's made of gold and precious rubies.",
+    [101] = "\nIt says...\nClosed for the summer.",
+    [102] = "\nIt's dangerous to move around in the dark!",
+    [103] = "\nOoh! ouch!! ... I fell down and cracked my head. I'm dead!",
+    [104] = "\nWheeeee...",
 //
 //        END FILE: ADVDATA2.ASM
 //
+};
+

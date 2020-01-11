@@ -137,6 +137,101 @@ def parse_equtab(line):
         return True
     return False
 
+def parse_movobj(line):
+    if not line:
+        return True
+    if re.match(".* EQU\s+\$", line):
+        return True
+    if re.match("\s*DB\s+0\s*$", line):
+        print("    0")
+        return False
+    m = re.match(".* DB\s+([\d,]+)\s(.*)", line)
+    if m:
+        olist = m.group(1).split(",")
+        cmt = m.group(2).replace(";", "// ")
+        print("    {}, {}".format(", ".join(olist), cmt))
+        return True
+    m = re.match(".* DB\s+([\d,]+)", line)
+    if m:
+        olist = m.group(1).split(",")
+        print("    {},".format(", ".join(olist)))
+        return True
+    return False
+
+words = {
+    "C$THE" : "the ",
+    "C$SMAL": "small ",
+    "C$YOU" : "you ",
+    "C$ARE" : "are ",
+    "C$SEE" : "see ",
+    "C$CANT": "can't ",
+    "C$DONT": "don't ",
+    "C$LARG": "large ",
+    "C$IM"  : "I'm ",
+    "C$INA" : "in a ",
+    "C$ONA" : "on a ",
+    "C$ISA" : "is a ",
+    "C$IITS": "It's ",
+    "C$TTHE": "The ",
+    "C$IS"  : "is ",
+    "C$AND" : "and ",
+    "C$AN"  : "an ",
+    "C$AT"  : "at ",
+    "C$OF"  : "of ",
+    "C$ITSA": "it's a ",
+    "C$TREK": "Trek",
+    "C$TO"  : "to ",
+    "C$MY"  : "my ",
+    "C$IN"  : "in ",
+    "C$ON"  : "on ",
+}
+
+def fix_msg(x):
+    if x == "13":
+        return "\\n"
+    if x == "8":
+        return "\\r"
+    if x  == "0":
+        return ""
+    if x == "QUOTE":
+        return "'"
+    # workaround for fake tokenization (',')
+    if x == "'":
+        return ""
+    if x == "'+80H":
+        return ", "
+    m = re.match("'(.)'\+80H", x)
+    if m:
+        return "{} ".format(m.group(1))
+    m = re.match("'(.*)'", x)
+    if m:
+        return m.group(1)
+    if x in words.keys():
+        return words[x]
+    return x
+
+msg = []
+def parse_message(line):
+    global msg
+    if not line:
+        print('"{}",'.format(''.join(msg)))
+        return True
+    if re.match(";", line):
+        return False
+    m = re.match("MSG(\d+)\s", line)
+    if m:
+       num = int(m.group(1))
+       print("    [{}] = ".format(num), end='') 
+       msg = []
+    m = re.match(".* DB\s+(.*)", line)
+    if m:
+       parts = m.group(1).split(",")
+       parts = [ fix_msg(x) for x in parts ]
+       parts = [ x.replace('"', '\\"') for x in parts ]
+       msg.extend(parts)
+       return True
+    return False
+
 def parse_all(fin):
     mode = None
 
@@ -199,6 +294,16 @@ def parse_all(fin):
         elif re.match("ANTTAB", line):
             print("\nstruct room_action anttab[] = {")
             mode = "anttab"
+        elif re.match("PUTTAB", line):
+            pass
+        elif re.match("MOVOBJ", line):
+            print("\nint movobj[] = {")
+            mode = "movobj"
+        elif re.match("MSG000", line):
+            print("\nchar *message[] = {")
+            mode = "message"
+
+        line = line.rstrip()
 
         # Process current data structure
         if mode == "verbtb" or mode == "nountb":
@@ -258,6 +363,16 @@ def parse_all(fin):
             mode = "None"
         elif mode == "anttab":
             if parse_room_action(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "movobj":
+            if parse_movobj(line):
+                continue
+            print("};\n")
+            mode = "None"
+        elif mode == "message":
+            if parse_message(line):
                 continue
             print("};\n")
             mode = "None"

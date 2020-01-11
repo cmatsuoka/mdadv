@@ -1,5 +1,7 @@
 #pragma once
 
+#include "advdata1.h"
+
 void lookob(struct advdata *d);
 
 void nosee1(struct advdata *d, int msg);

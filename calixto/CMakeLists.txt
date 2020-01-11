@@ -10,4 +10,4 @@ add_executable(${PROJECT_NAME}
 	main.c
 )
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/advsys/libadvsys.a SDL)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/advsys/libadvsys.a SDL2)

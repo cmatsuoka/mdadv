@@ -2,6 +2,7 @@
 
 #include <stddef.h>
 #include "advsys.h"
+#include "text.h"
 
 struct advdata {
     int room;

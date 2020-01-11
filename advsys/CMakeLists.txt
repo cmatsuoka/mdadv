@@ -11,5 +11,9 @@ add_library(${PROJECT_NAME}
 	advutil.c
 	advcode1.c
         protect.c
+	graphics.c
+	screen.c
+	text.c
+	decode.c
 )
 

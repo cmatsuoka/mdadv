@@ -193,6 +193,8 @@ def fix_msg(x):
         return "\\r"
     if x  == "0":
         return ""
+    if x == "QUOTE+80H":
+        return "' "
     if x == "QUOTE":
         return "'"
     # workaround for fake tokenization (',')

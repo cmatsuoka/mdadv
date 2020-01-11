@@ -30,18 +30,18 @@ void look01(struct advdata *d)
             return;
         }
         if (!makvis(d, 27+INV)) {  // MICROFILM
-            dmsg012();
+            dmsg(12);
             return;
         }
-        ckdraw();
-        dmsg011();
+        ckdraw(d);
+        dmsg(11);
         return;
     }
 
     if (desksw) {
-        dmsg029();
-        disply(28);
-        dmsg017();
+        dmsg(29);
+        disply(message[28]);
+        dmsg(17);
         return;
     }
 }
@@ -55,11 +55,11 @@ void look02(struct advdata *d)
         return;
     }
     if (!makvis(d, 18+INV)) {     // MESSAGE
-        dmsg012();
+        dmsg(12);
         return;
     }
-    ckdraw();
-    dmsg030();
+    ckdraw(d);
+    dmsg(30);
 }
 
 //        LOOK RUG
@@ -67,14 +67,14 @@ void look02(struct advdata *d)
 void look03(struct advdata *d)
 {
     if (locobj(d, 10)) {          // RUG
-        dmsg012();
+        dmsg(12);
         return;
     }
     if (ckobj(d, 119)) {          // LADDER TO CELLAR
-        dmsg012();
+        dmsg(12);
         return;
     }
-    dmsg031();
+    dmsg(31);
 }
 
 //        LOOK DOOR
@@ -88,7 +88,7 @@ void look04(struct advdata *d)
                 return;
             }
         }
-        dmsg012();
+        dmsg(12);
         return;
     }
     if (!ckobj(d, d->nounno)) {
@@ -96,11 +96,11 @@ void look04(struct advdata *d)
         return;
     }
     if (ckobj(d, 119)) {          // LADDER
-        dmsg012();
+        dmsg(12);
         return;
     }
-    disply(31);
-    dmsg029();
+    disply(message[31]);
+    dmsg(29);
 }
 
 //        LOOK CHEST
@@ -114,16 +114,16 @@ void look05(struct advdata *d)
     }
     switch (chstsw) {
     case 0:
-        dmsg016();
+        dmsg(16);
         return;
     case 1:
-        dmsg035();
+        dmsg(35);
         return;
     case 2:
-        dmsg036();
+        dmsg(36);
         return;
     }
-    dmsg022();
+    dmsg(22);
 }
 
 //        LOOK CABINET
@@ -135,12 +135,12 @@ void look06(struct advdata *d)
         return;
     }
     if (makvis(d, 16+INV)) {      // MOUSETRAP
-        ckdraw();
-        dmsg037();
+        ckdraw(d);
+        dmsg(37);
         return;
     }
-    disply(11);
-    dmsg038();
+    disply(message[11]);
+    dmsg(38);
 }
 
 //        LOOK LADDER
@@ -148,7 +148,7 @@ void look06(struct advdata *d)
 void look07(struct advdata *d)
 {
     if (d->room == 3) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -162,8 +162,8 @@ void look08(struct advdata *d)
         nohave(d);
         return;
     }
-    disply(31);
-    dmsg042();
+    disply(message[31]);
+    dmsg(42);
 }
 
 //        LOOK SWITCH
@@ -171,7 +171,7 @@ void look08(struct advdata *d)
 void look09(struct advdata *d)
 {
     if (d->room == 3 || d->room == 6 || d->room == 7) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -182,11 +182,11 @@ void look09(struct advdata *d)
 void look10(struct advdata *d)
 {
     if (ckobj(d, 117)) {          // SPEAKER
-        dmsg014();
+        dmsg(14);
         return;
     }
     if (ckobj(d, 122)) {          // DEVICE
-        dmsg044();
+        dmsg(44);
         return;
     }
     nosee(d);
@@ -197,11 +197,11 @@ void look10(struct advdata *d)
 void look11(struct advdata *d)
 {
     if (d->room == 4) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     if (ckobj(d, 123)) {          // STORAGE CABINET W/PASSAGE
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -212,7 +212,7 @@ void look11(struct advdata *d)
 void look14(struct advdata *d)
 {
     if (d->room == 16 || d->room == 9) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     nosee(d);
@@ -227,10 +227,10 @@ void look15(struct advdata *d)
         return;
     }
     if (!havobj(d, 11)) {         // SPECS
-        dmsg068();
+        dmsg(68);
         return;
     }
-    dmsg069();
+    dmsg(69);
 }
 
 //        LOOK ENERGIZER
@@ -238,7 +238,7 @@ void look15(struct advdata *d)
 void look16(struct advdata *d)
 {
     if (d->room == 6 || d->room == 7) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     nosee(d);
@@ -249,7 +249,7 @@ void look16(struct advdata *d)
 void look17(struct advdata *d)
 {
     if (d->room == 8 || d->room == 15 || d->room == 16) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     nosee(d);
@@ -260,7 +260,7 @@ void look17(struct advdata *d)
 void look18(struct advdata *d)
 {
     if (d->room == 8) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -271,7 +271,7 @@ void look18(struct advdata *d)
 void look19(struct advdata *d)
 {
     if (d->room == 5) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -282,7 +282,7 @@ void look19(struct advdata *d)
 void look20(struct advdata *d)
 {
     if (d->room == 19) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);
@@ -293,7 +293,7 @@ void look20(struct advdata *d)
 void look21(struct advdata *d)
 {
     if (d->room == 17) {
-        dmsg012();
+        dmsg(12);
         return;
     }
     lookob(d);

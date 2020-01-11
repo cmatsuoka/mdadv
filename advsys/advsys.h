@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdio.h>
+
 #define MAXWRD   4                // VERB/NOUN COMPARE LENGTH
 #define MVOBMX   2                // MAX # OF MOVABLE OVERLAYS PER OBJECT
 #define RMSIZE   6                // SIZE OF A ROOM TABLE ENTRY
@@ -10,6 +12,7 @@
 #define ADVMARK  0xA5             // MARKER USED FOR SAVE FILES
 #define QUOTE    0x27             // SINGLE QUOTE HEX CODE
 
+#define STUB() printf("not implemented: %s\n", __FUNCTION__);
 
 struct verb_noun {
     char *name;
@@ -50,3 +53,7 @@ struct point_table {
     int obj_num;
     int val;
 };
+
+
+void disply(char *msg);
+

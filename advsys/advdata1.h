@@ -1,15 +1,9 @@
 #pragma once
 
+#include <stddef.h>
 #include "advsys.h"
 
 struct advdata {
-    int maxobj0;                  // MAX OBJECTS ALLOWED TO CARRY
-    int norms0;                   // NUMBER OF ROOMS IN ADVENTURE
-    int tresrm0;                  // ROOM TO STORE TREASURE IN
-    int maxpnt0;                  // TOTAL POINTS REQUIRED TO WIN
-    int deadrm0;                  // DEFAULT ROOM TO DIE IN
-    int advnum0;                  // ADVENTURE NUMBER FOR SAVE GAME
-
     int room;
     int nounno;
     int verbno;
@@ -19,4 +13,11 @@ struct advdata {
     int score;
     int objcnt;
     int *object;
+
+    int advnum;
+    int maxobj1;
+    int norms1;
+    int tresrm1;
+    int maxpnt1;
+    int deadrm1;
 };

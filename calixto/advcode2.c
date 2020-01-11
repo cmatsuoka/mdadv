@@ -421,6 +421,15 @@ void look21(struct advdata *d)
 
 //        ROOM 03
 
+void entr03(struct advdata *d)
+{
+    if (!locobj(d, 3)) {          // LIT FLASHLIGHT
+        if ((rand() & 0x7f) <= 50) {
+            disply(message[102]);
+        }
+    }
+}
+
 //        ROOM 06
 
 //        ROOM 15
@@ -434,6 +443,16 @@ void look21(struct advdata *d)
 //        EXIT ROOM ROUTINES
 
 //        ROOM 03
+
+void exit03(struct advdata *d)
+{
+    if (!locobj(d, 3)) {          // LIT FLASHLIGHT
+        if ((rand() & 0x7f) <= 40) {
+            dead1(d, 102);
+            return;
+        }
+    }
+}
 
 //        ROOM 06
 
@@ -449,13 +468,38 @@ void look21(struct advdata *d)
 
 //        MOVE CLOUDS IN SKY
 
+void movclo(struct advdata *d)
+{
+    STUB();
+}
+
 //        MOVE LASER IN LAB
+
+void movlsr(struct advdata *d)
+{
+    STUB();
+}
 
 //        BLINK LIGHTS IN DEVICE
 
+void movlit(struct advdata *d)
+{
+    STUB();
+}
+
 //        MOVE SNAKES TAIL
 
+void movsnk(struct advdata *d)
+{
+    STUB();
+}
+
 //        MOVE CLOCK IN STUDY
+
+void movclk(struct advdata *d)
+{
+    STUB();
+}
 
 //
 //        END FILE: ADVCODE2.ASM   --   CALIXTO ISLAND

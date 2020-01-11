@@ -5,19 +5,19 @@
 void dmsg012(void);
 void dmsg026(void);
 
-void entr03(void);
-void entr06(void);
-void entr15(void);
-void entr19(void);
-void entr23(void);
-void entr24(void);
+void entr03(struct advdata *);
+void entr06(struct advdata *);
+void entr15(struct advdata *);
+void entr19(struct advdata *);
+void entr23(struct advdata *);
+void entr24(struct advdata *);
 
-void exit03(void);
-void exit06(void);
-void exit19(void);
-void exit22(void);
-void exit24(void);
-void exboat(void);
+void exit03(struct advdata *);
+void exit06(struct advdata *);
+void exit19(struct advdata *);
+void exit22(struct advdata *);
+void exit24(struct advdata *);
+void exboat(struct advdata *);
 
 void inrm06(void);
 void inrm01(void);
@@ -78,8 +78,8 @@ void vdefl(void);
 void vinve(void);
 void vread(void);
 
-void movclk(void);
-void movlsr(void);
-void movlit(void);
-void movclo(void);
-void movsnk(void);
+void movclk(struct advdata *);
+void movlsr(struct advdata *);
+void movlit(struct advdata *);
+void movclo(struct advdata *);
+void movsnk(struct advdata *);

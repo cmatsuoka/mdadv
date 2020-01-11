@@ -103,7 +103,7 @@ void display_char(int c)
     }
         
     if (c == 0x0c) {        /* clear screen */
-        clstxt();
+        clear_text();
         return;
     }
 

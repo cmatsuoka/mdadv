@@ -11,10 +11,10 @@ int get_pixel(int,int);
 void put_pixel(int,int,int);
 void show_screen(void);
 void show_block(int,int,int,int);
-void cls(void);
-void clstxt(void);
 void clspic(int);
-void cls_clr(int);
+void clear_screen(int, int, int);
+void clear_picture(int);
+void clear_text(void);
 void setcur(int,int);
 void display_overlay(int, int, uint8_t*, int);
 

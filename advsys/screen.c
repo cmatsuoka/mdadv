@@ -38,7 +38,7 @@ void show_screen()
 }
 
 
-static void _clear_screen(int y1, int y2, int c)
+void clear_screen(int y1, int y2, int c)
 {
 	int x, y;
 
@@ -48,25 +48,14 @@ static void _clear_screen(int y1, int y2, int c)
 	}
 }
 
-void cls_clr(int c)
+void clear_picture(int c)
 {
-	_clear_screen(0, GFX_HEIGHT, c);
+	clear_screen(0, PIC_HEIGHT, c);
 }
 
-void clspic(int c)
+void clear_text()
 {
-	_clear_screen(0, PIC_HEIGHT, c);
-}
-
-void clstxt()
-{
-	_clear_screen(PIC_HEIGHT + 1, GFX_HEIGHT, COLOR_WHITE);
+	clear_screen(PIC_HEIGHT + 1, GFX_HEIGHT, COLOR_WHITE);
 	show_block(0, PIC_HEIGHT + 1, GFX_WIDTH, GFX_HEIGHT - PIC_HEIGHT - 1);
 	setcur(11, 0);
 }
-
-void cls()
-{
-	cls_clr(COLOR_WHITE);
-}
-

@@ -56,6 +56,9 @@ struct point_table {
 };
 
 
+void cls(void);
+void cls_clr(int);
+void clstxt(void);
 void disply(char *msg);
 void chrout(int ch);
 void dispovl(int, int, uint8_t *);

@@ -7,6 +7,7 @@ include_directories(${mdadv_INCLUDE_DIRS})
 add_executable(${PROJECT_NAME}
 	advdata2.c
 	advcode2.c
+	screens.c
 	main.c
 )
 

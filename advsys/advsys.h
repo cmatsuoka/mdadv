@@ -62,3 +62,5 @@ void clstxt(void);
 void disply(char *msg);
 void chrout(int ch);
 void dispovl(int, int, uint8_t *);
+void shoscr(int, int, uint8_t *);
+

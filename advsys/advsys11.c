@@ -277,10 +277,23 @@ void chrout(int ch)
 //
 //********************************************************************
 
+void scrlft(int x, int y, int w, int h)
+{
+    int i, j;
+    int p;
 
-//	 SHIFT "DX" LEFT 2 PIXELS AND MOVE THEM INTO THE
-//	 RIGHT SIDE OF "AX"
+    x--;
+    w *= 2;
 
+    for (j = 0; j < h; j++) {
+        p = get_pixel(x, y + j);
+        for (i = 1; i < w; i++)
+            put_pixel(x + i - 1, y + j, get_pixel (x + i, y + j));
+        put_pixel(x + i - 1, y + j, p);
+    }
+
+    show_block (x, y, w, h);
+}
 
 //********************************************************************
 //
@@ -293,10 +306,23 @@ void chrout(int ch)
 //
 //********************************************************************
 
+void scrrit(int x, int y, int w, int h)
+{
+    int i, j;
+    int p;
 
-//	 SHIFT "DX" RIGHT 2 PIXELS AND MOVE THEM INTO THE
-//	 LEFT SIDE OF "AX"
+    x--;
+    w *= 2;
 
+    for (j = 0; j < h; j++) {
+        p = get_pixel(x + w - 1, y + j);
+        for (i = x + w - 1; i > 0; i--)
+            put_pixel(x + i, y + j, get_pixel (x + i - 1, y + j));
+        put_pixel(x, y + j, p);
+    }
+
+    show_block (x, y, w, h);
+}
 
 //********************************************************************
 //

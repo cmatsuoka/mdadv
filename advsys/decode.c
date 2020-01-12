@@ -115,7 +115,6 @@ void display_overlay(int x, int y, uint8_t *ovl, int fs)
     objbyt(NULL);
 
     max_y = fs ? GFX_HEIGHT : PIC_HEIGHT;
-    max_y = PIC_HEIGHT;
 
     for (; y < max_y; y++) {
         l = len;
